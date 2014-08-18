@@ -1,7 +1,44 @@
+import sys
+sys.path.append("..") # whoops
+
+import os
+import pickle
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn
+import genepy
+
+
+
+if os.path.isfile("data/rubella.p") :
+	f = open("data/rubella.p", "r")
+	A = pickle.load(f)
+	f.close()
+
+else :
+	A = genepy.seqarray("raw_data/rubella_updated.gb")
+	A.align(iter = 10, full = True)
+
+	f = open("data/rubella.p", "w")
+	pickle.dump(A, f)
+	f.close()
+
+
+
+
+
+
+
+
+
+
+
+
+# Tharr be dragons ( old code ) below
 """
 Parses a multi-record .gb GenBank file and returns a CSV containing ID, date, 
 and full sequence, having dropped records that contain given keywords.
-"""
+
 
 from Bio.Seq import Seq
 from Bio import SeqIO
@@ -48,3 +85,4 @@ pd.DataFrame({"ID" : ID, "date" : date, "sequence" : sequence}).to_csv("sequence
 
 
 print "File parsed. Number of records dropped : %d" % numAvoided
+"""

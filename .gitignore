@@ -1,4 +1,5 @@
-sequence.gb
+*.phy
+*.fasta
 *.csv
 *.gb
 *.fst
